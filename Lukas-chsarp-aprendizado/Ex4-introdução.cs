@@ -28,7 +28,7 @@ namespace Lukas_chsarp_aprendizado
             n3 =Convert.ToDouble(Console.ReadLine());
             media = (n1 + n2 + n3) / 3;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("A média dos seus número é: "+ media);
+            Console.Write("A média dos seus número é: "+ Math.Round(media,3));
             Console.ReadKey();
             goto inicio;
         }//fim

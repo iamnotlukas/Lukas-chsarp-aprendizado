@@ -1,0 +1,185 @@
+{//inicio
+
+            Console.WriteLine("Digite a quantidade de alunos: ");
+            int l = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Digite a quantidade de avaliações: ");
+            int c = Convert.ToInt32(Console.ReadLine());
+
+ 
+
+            string[] alunos = new string[l];
+            double[,] avaliacoes = new double[l, c+1];
+
+ 
+
+            for(int i = 0; i < l; i++)
+            {
+                Console.WriteLine("Digite o nome do " + (i+1) + "º aluno: ");
+                alunos[i] = Console.ReadLine();
+
+ 
+
+                for (int j = 0; j < c; j++)
+                {
+                    Console.WriteLine("Digite a " + (j+1) + "º nota do aluno " + alunos[i] + ": ");
+                    avaliacoes[i, j] = Convert.ToDouble(Console.ReadLine());             
+
+ 
+
+                }                               
+            }
+
+ 
+
+            for (int i = 0; i < l; i++)
+            {
+               for (int j = 0; j < c; j++)
+                {
+                    avaliacoes[i, c] += avaliacoes[i, j];                    
+                }
+
+ 
+
+                avaliacoes[i, c] /= c;
+                Console.WriteLine("A média do aluno " + alunos[i] + " é: " + avaliacoes[i, c]);
+            }
+
+ 
+
+            Console.ReadKey();
+        }//fim
+
+
+
+
+ {//inicio
+            string[,] poltronas = new string[47, 2];
+
+
+
+            for (int l = 0; l < 47; l++)
+            {
+                poltronas[l, 0] = Convert.ToString(l);
+                poltronas[l, 1] = "LIVRE";
+            }
+
+
+
+        inicio:
+            Console.WriteLine("1 - Inserir ");
+            Console.WriteLine("2 - Alterar ");
+            Console.WriteLine("3 - Mostrar ");
+            Console.WriteLine("4 - Buscar ");
+            Console.WriteLine("5 - Sair ");
+            string op = Console.ReadLine();
+
+
+
+            switch (op)
+            {
+                case "1":
+                    //pedir o numero da poltrona que vai ser inserido e o status vai se ocupado
+                    Console.WriteLine("Digite o número da poltrona: ");
+                    string op2 = Console.ReadLine();
+                    // loop para gravar o status da poltrona
+                    for (int l = 1; l < 47; l++)
+                    {
+                        if (op2 == poltronas[l, 0]) // se o numero inserido for igual o que esta na matriz, o status sera ocupado
+                        {
+                            poltronas[l, 1] = "Ocupado";
+                            Console.WriteLine("Poltrona - " + poltronas[l, 1]);
+                        }
+                    }
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto inicio;
+
+
+
+                case "2":
+                    //
+                    Console.WriteLine("Digite o número da poltrona que vai alterada: ");
+                    string op3 = Console.ReadLine();
+
+
+
+                    for (int l = 1; l < 47; l++)
+                    {
+                        if (op3 == poltronas[l, 0])
+                        {
+                            if (poltronas[l, 1] == "Ocupado")
+                            {
+                                poltronas[l, 1] = "Livre";
+                                Console.WriteLine("Sua poltrona foi alterada!");
+                            }
+                        }
+                    }
+
+
+
+                    Console.WriteLine("Digite o número da sua nova poltrona: ");
+                    string op4 = Console.ReadLine();
+
+
+
+                    for (int l = 1; l < 47; l++)
+                    {
+                        if (op4 == poltronas[l, 0])
+                        {
+                            poltronas[l, 1] = "Ocupado";
+                            Console.WriteLine("Poltrona - " + poltronas[l, 1]);
+                        }
+                    }
+
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto inicio;
+
+
+
+                case "3":
+                    for (int l = 1; l < 47; l++)
+                    {
+                        for (int c = 0; c < 2; c++)
+                        {
+                            Console.Write(poltronas[l, c] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto inicio;
+                case "5":
+                    Console.Write("Informe a poltrona que deseja procurar: ");
+                    string n_busca = Console.ReadLine();
+                    for (int l = 1; l < 47; l++)
+                    {
+                        if (n_busca == poltronas[l, 0])
+                        {
+                            Console.WriteLine("A poltrona " + n_busca + " está " + poltronas[l, 1]);
+
+                        }
+                    }
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto inicio;
+                case "4":
+                    Console.WriteLine(); //pular linha
+                    Console.Write("Informe a poltrona que deseja liberar: "); //usuário informa o número
+                    string n_liberar = Console.ReadLine(); //leitura do npumero informado pelo usuário
+
+                    for (int l = 1; l < 47; l++) //loop para ver a mtriz até encontrar o número que deseja liberar
+                    {
+                        if (n_liberar == poltronas[l, 0]) // se o numero inserido for igual o que esta na matriz, o status sera ocupado
+                        {
+                            poltronas[l, 1] = "Livre";
+                            Console.WriteLine("Poltrona - " + poltronas[l, 1]);
+                        }
+                    }
+                    Console.ReadKey(); 
+                    Console.Clear();
+                    goto inicio; //voltar para o menu
+            }
+            Console.ReadKey();
+        }//fim
+
